@@ -1,5 +1,6 @@
 package br.com.alura.screenmatch.model;
 
+import br.com.alura.screenmatch.service.TranslateService;
 import com.fasterxml.jackson.annotation.JsonAlias;
 
 import java.util.Locale;
@@ -21,7 +22,7 @@ public class Serie {
         this.categoria = Categoria.fromString(dadosSerie.genero().split(",")[0].trim());
         this.atores = dadosSerie.atores();
         this.poster = dadosSerie.poster();
-        this.sinopse = dadosSerie.sinopse();
+        this.sinopse = TranslateService.translate(dadosSerie.sinopse());
     }
 
     public String getTitulo() {
@@ -82,10 +83,10 @@ public class Serie {
 
     @Override
     public String toString() {
-        return "genero: " + categoria +
-                "\ntitulo: " + titulo +
-                "\navaliacao: " + avaliacao +
-                "\nsinopse: " + sinopse;
+        return "\nGênero: " + categoria +
+                "\nTitulo: " + titulo +
+                "\nAvaliação: " + avaliacao +
+                "\nSinopse: " + sinopse;
 
     }
 }

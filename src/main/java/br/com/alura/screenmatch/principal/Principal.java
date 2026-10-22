@@ -25,7 +25,7 @@ public class Principal {
         var opcao = -1;
         while(opcao != 0) {
         var menu = """
-                1 - Buscar séries
+                \n1 - Buscar séries
                 2 - Buscar episódios
                 3 - Mostrar séries buscadas
                 0 - Sair                                 
