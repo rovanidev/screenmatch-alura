@@ -2,12 +2,20 @@ package br.com.alura.screenmatch.model;
 
 import br.com.alura.screenmatch.service.TranslateService;
 import com.fasterxml.jackson.annotation.JsonAlias;
+import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.OptionalDouble;
 
+@Entity
+@Table(name = "series")
 public class Serie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     private String titulo;
     private Integer totalTemporadas;
     private Double avaliacao;
@@ -24,6 +32,18 @@ public class Serie {
         this.poster = dadosSerie.poster();
         this.sinopse = TranslateService.translate(dadosSerie.sinopse());
     }
+
+    public Serie() {
+
+    }
+
+    @OneToMany(mappedBy = "serie")
+    private List<Episodio> episodios;
+
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {}
 
     public String getTitulo() {
         return titulo;
